@@ -6,7 +6,7 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/10/29 20:31:25 by msousa           ###   ########.fr        #
+#    Updated: 2021/10/29 21:27:49 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,22 +23,26 @@ SRC			= main.c srcs/fractol.c
 NAME		= fractol
 
 ifeq (${UNAME}, Linux)
-	LINKS += -lbsd -lXext -lX11
+LINKS += -lbsd -lXext -lX11
 endif
 
 ifeq (${UNAME}, Darwin)
-	LINKS += -framework OpenGL -framework AppKit
+LINKS += -Lmlx -framework OpenGL -framework AppKit
+INC += -Imlx
 endif
 
 ${NAME}:	${OBJ}
-					${CC} ${CFLAGS} ${OBJ} ${LINKS} -o $@ 
+ifeq (${UNAME}, Darwin)
+					${MAKE} -C mlx
+endif
+					${CC} ${CFLAGS} ${OBJ} ${LINKS} -o $@
 
 %.o:%.c
 					${CC} ${CFLAGS} ${INC} -c $< -o $@
- 
+
 all:			${NAME}
 
-bonus:		
+bonus:
 					@echo "TBD"
 
 test:			${NAME}
@@ -47,6 +51,9 @@ test:			${NAME}
 					valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./${NAME}
 
 clean:
+ifeq (${UNAME}, Darwin)
+					${MAKE} clean -C mlx
+endif
 					${RM} ${OBJ}
 
 fclean:		clean
