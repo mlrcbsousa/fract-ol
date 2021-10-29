@@ -6,11 +6,12 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/10/29 19:52:41 by msousa           ###   ########.fr        #
+#    Updated: 2021/10/29 20:31:25 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra -Werror
+LINKS		= -lmlx -lm -Werror
 CC			= gcc
 RM			= rm -f
 AR			= ar rcs
@@ -22,15 +23,15 @@ SRC			= main.c srcs/fractol.c
 NAME		= fractol
 
 ifeq (${UNAME}, Linux)
-	CFLAGS += -lbsd -lmlx -lXext -lX11 -lm
+	LINKS += -lbsd -lXext -lX11
 endif
 
 ifeq (${UNAME}, Darwin)
-	CFLAGS += -lmlx -framework OpenGL -framework AppKit -lm
+	LINKS += -framework OpenGL -framework AppKit
 endif
 
 ${NAME}:	${OBJ}
-					${CC} ${CFLAGS} -o $@ ${OBJ}
+					${CC} ${CFLAGS} ${OBJ} ${LINKS} -o $@ 
 
 %.o:%.c
 					${CC} ${CFLAGS} ${INC} -c $< -o $@

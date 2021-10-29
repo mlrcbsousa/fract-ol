@@ -6,16 +6,19 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/10/29 19:47:27 by msousa           ###   ########.fr       */
+/*   Updated: 2021/10/29 20:32:33 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <math.h>
 # include <mlx.h>
+# include <math.h>
 # include <stdlib.h>
+
+# define WINDOW_WIDTH 960
+# define WINDOW_HEIGHT 540
 
 void	fractol(void);
 

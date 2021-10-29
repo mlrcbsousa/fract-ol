@@ -54,3 +54,5 @@ After that, to compile your project:
 ```bash
 gcc -Wall -Wextra -Werror main.c -lbsd -lmlx -lXext -lX11
 ```
+
+[Rule of Thumb: On a linking command line, libraries go after object files, not before them.](https://stackoverflow.com/questions/59287273/how-do-i-compile-using-minilibx)
