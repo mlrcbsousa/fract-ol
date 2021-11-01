@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/10/30 19:39:58 by msousa           ###   ########.fr       */
+/*   Created: 2021/10/30 18:58:28 by msousa            #+#    #+#             */
+/*   Updated: 2021/10/30 19:40:10 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+int create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
 
-# include <mlx.h>
-# include <math.h>
-# include <stdlib.h>
-# include "color.h"
+int get_t(int trgb)
+{
+	return (trgb & (0xFF << 24));
+}
 
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
+int get_r(int trgb)
+{
+	return (trgb & (0xFF << 16));
+}
 
-void	fractol(void);
+int get_g(int trgb)
+{
+	return (trgb & (0xFF << 8));
+}
 
-#endif
+int get_b(int trgb)
+{
+	return (trgb & (0xFF << 0));
+}
