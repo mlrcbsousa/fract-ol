@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 15:07:54 by msousa           ###   ########.fr       */
+/*   Created: 2021/04/12 23:04:35 by msousa            #+#    #+#             */
+/*   Updated: 2021/04/12 23:04:42 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <mlx.h>
-# include <math.h>
-# include <stdlib.h>
-# include "color.h"
-# include "libft.h"
-
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
-
-void	fractol(void);
-
-#endif
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	if (!n)
+		return (0);
+	while (*(unsigned char *)s1++ == *(unsigned char *)s2++ && --n)
+		;
+	return (*(unsigned char *)(--s1) - *(unsigned char *)(--s2));
+}

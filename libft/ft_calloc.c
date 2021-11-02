@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 15:07:54 by msousa           ###   ########.fr       */
+/*   Created: 2021/04/12 22:49:01 by msousa            #+#    #+#             */
+/*   Updated: 2021/04/14 18:40:43 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <mlx.h>
-# include <math.h>
-# include <stdlib.h>
-# include "color.h"
-# include "libft.h"
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ret;
 
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
-
-void	fractol(void);
-
-#endif
+	ret = malloc(nmemb * size);
+	if (ret)
+		ft_bzero(ret, nmemb * size);
+	return (ret);
+}

@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 16:04:15 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/01 14:58:00 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/02 09:03:28 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	fractol(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 															 &img.endian);
 	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	// mlx_loop(mlx);
 }

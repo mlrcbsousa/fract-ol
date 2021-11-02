@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 15:07:54 by msousa           ###   ########.fr       */
+/*   Created: 2021/04/12 22:51:48 by msousa            #+#    #+#             */
+/*   Updated: 2021/04/12 22:51:59 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <mlx.h>
-# include <math.h>
-# include <stdlib.h>
-# include "color.h"
-# include "libft.h"
-
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
-
-void	fractol(void);
-
-#endif
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (*lst)
+		ft_lstlast(*lst)->next = new;
+	else
+		*lst = new;
+}

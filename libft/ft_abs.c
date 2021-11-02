@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 15:07:54 by msousa           ###   ########.fr       */
+/*   Created: 2021/04/23 00:30:00 by msousa            #+#    #+#             */
+/*   Updated: 2021/04/23 00:36:45 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <mlx.h>
-# include <math.h>
-# include <stdlib.h>
-# include "color.h"
-# include "libft.h"
-
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
-
-void	fractol(void);
-
-#endif
+int	ft_abs(int n)
+{
+	return (ft_ternary(n < 0, -n, n));
+}

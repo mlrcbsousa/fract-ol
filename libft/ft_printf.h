@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 15:07:54 by msousa           ###   ########.fr       */
+/*   Created: 2021/04/21 22:36:48 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/02 15:04:54 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include <mlx.h>
-# include <math.h>
-# include <stdlib.h>
-# include "color.h"
+# include <stdarg.h>
 # include "libft.h"
 
-# define WINDOW_WIDTH 960
-# define WINDOW_HEIGHT 540
+# define PRINTF_FORMATS "cspdiuxX%"
+# define PRINTF_DELIMITER '%'
 
-void	fractol(void);
+typedef int	(*t_formater)(va_list);
+
+int	ft_printf(const char *format, ...);
+
+int	format_d(va_list ap);
+int	format_u(va_list ap);
+int	format_x(va_list ap);
+int	format_upperx(va_list ap);
+int	format_percent(va_list ap);
 
 #endif

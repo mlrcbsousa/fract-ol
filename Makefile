@@ -6,15 +6,15 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/10/31 08:25:48 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/02 15:37:20 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS	= -Wall -Wextra -Werror
-LINKS		= -lmlx -lm
+LINKS		= -lmlx -lm -Llibft -lft
 CC			= gcc
 RM			= rm -f
-INC			= -I includes
+INC			= -Iincludes -Ilibft
 UNAME 	:= ${shell uname}
 OBJ			= ${SRC:.c=.o}
 SRC			= main.c srcs/fractol.c srcs/color.c srcs/color_shade.c
@@ -29,8 +29,11 @@ ifeq (${UNAME}, Darwin)
 LINKS += -framework OpenGL -framework AppKit
 endif
 
-${NAME}:	${OBJ}
+${NAME}:	libft ${OBJ}
 					${CC} ${CFLAGS} ${OBJ} ${LINKS} -o $@
+
+libft:
+					${MAKE} -C libft
 
 %.o:%.c
 					${CC} ${CFLAGS} ${INC} -c $< -o $@
@@ -52,6 +55,7 @@ ifeq (${UNAME}, Darwin)
 endif
 
 clean:
+					${MAKE} clean -C libft
 					${RM} ${OBJ}
 
 fclean:		clean
@@ -59,4 +63,4 @@ fclean:		clean
 
 re: 			fclean all
 
-.PHONY : 	all clean fclean re bonus
+.PHONY : 	all clean fclean re bonus libft
