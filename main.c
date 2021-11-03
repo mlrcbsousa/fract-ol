@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 18:38:03 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/03 18:45:14 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int mandelbrot(int i, int j)
 
 	while (iterations < MAX_ITERATIONS)
 	{
-		z = point_add(complex_squared(z), c);
-		if (fabs(z.x) + fabs(z.y) > 4.0)
+		if (z.x * z.x + z.y * z.y > 16.0)
 			break;
+		z = point_add(complex_squared(z), c);
 		iterations++;
 	}
 	return (iterations);
