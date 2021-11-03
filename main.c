@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 16:15:33 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/03 18:38:03 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int mandelbrot(int i, int j)
 	window_x = (t_range){.min = 0.0, .max = (double)WIDTH};
 	window_y = (t_range){.min = 0.0, .max = (double)HEIGHT};
 	ratio = window_x.max / window_y.max;
-	axis_x = (t_range){.min = -2.0 * ratio, .max = 2.0 * ratio};
-	axis_y = (t_range){.min = -2.0, .max = 2.0};
+	axis_x = (t_range){.min = -2.5 * ratio, .max = 2.5 * ratio};
+	axis_y = (t_range){.min = -2.5, .max = 2.5};
 
 	iterations = 0;
 	z = (t_point){.x = 0.0, .y = 0.0};
@@ -36,9 +36,11 @@ int mandelbrot(int i, int j)
 			.x = range_map(i, window_x, axis_x),
 			.y = range_map(j, window_y, axis_y)};
 
-	while (iterations <= MAX_ITERATIONS && z.x <= 2.0 && z.y <= 2.0)
+	while (iterations < MAX_ITERATIONS)
 	{
 		z = point_add(complex_squared(z), c);
+		if (fabs(z.x) + fabs(z.y) > 4.0)
+			break;
 		iterations++;
 	}
 	return (iterations);
@@ -51,6 +53,7 @@ void draw(t_image *img)
 	int iterations;
 	int color;
 	int rgb;
+	// int rgbs;
 
 	i = 0;
 	while (i < WIDTH)
@@ -59,7 +62,10 @@ void draw(t_image *img)
 		while (j < HEIGHT)
 		{
 			iterations = mandelbrot(i, j);
-			rgb = sqrt((double)iterations / (double)MAX_ITERATIONS) * (double)255;
+			rgb = sqrt((double)iterations / (double)MAX_ITERATIONS) * 255.0;
+			// rgb = (double)iterations / (double)MAX_ITERATIONS * 255.0;
+			if (iterations == MAX_ITERATIONS)
+				rgb = 0;
 			color = create_trgb(0, rgb, rgb, rgb);
 			my_mlx_pixel_put(img, i, HEIGHT - j, color);
 			j++;

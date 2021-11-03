@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 16:11:13 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/03 18:16:00 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define WIDTH 1000
 # define HEIGHT 1000
-# define MAX_ITERATIONS 200
+# define MAX_ITERATIONS 100
 
 void	  fractol(void);
 t_point complex_squared(t_point complex);
