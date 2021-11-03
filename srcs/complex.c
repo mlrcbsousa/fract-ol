@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.h                                         :+:      :+:    :+:   */
+/*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 16:29:05 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 12:28:01 by msousa           ###   ########.fr       */
+/*   Created: 2021/11/02 21:53:43 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/03 12:48:56 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_POINT_H
-# define FT_POINT_H
+#include "ft_point.h"
 
-struct	s_point
+t_point complex_squared(t_point point)
 {
-	double	x;
-	double	y;
-};
+	t_point	result;
 
-typedef struct s_point	t_point;
+	result.x = point.x * point.x - point.y * point.y;
+	result.y = 2.0 * point.x * point.y;
+	return (result);
+}
 
-t_point point_add(t_point a, t_point b);
-
-#endif

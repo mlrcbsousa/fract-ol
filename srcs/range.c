@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.h                                         :+:      :+:    :+:   */
+/*   range.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 16:29:05 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 12:28:01 by msousa           ###   ########.fr       */
+/*   Created: 2021/11/03 12:47:39 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/03 15:54:28 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_POINT_H
-# define FT_POINT_H
+#include "ft_range.h"
 
-struct	s_point
+double	range_size(t_range range)
 {
-	double	x;
-	double	y;
-};
+	return (range.max - range.min);
+}
 
-typedef struct s_point	t_point;
-
-t_point point_add(t_point a, t_point b);
-
-#endif
+double	range_map(double n, t_range from, t_range to)
+{
+	return to.min + (n / range_size(from) * range_size(to));
+}

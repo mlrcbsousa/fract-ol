@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/30 19:29:02 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 09:09:39 by msousa           ###   ########.fr       */
+/*   Created: 2021/11/03 12:12:36 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/03 12:49:03 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "ft_point.h"
 
-int create_trgb(int t, int r, int g, int b);
-int get_t(int trgb);
-int get_r(int trgb);
-int get_g(int trgb);
-int get_b(int trgb);
+t_point point_add(t_point a, t_point b)
+{
+	t_point result;
 
-int add_shade(int color, double distance);
-
-#endif
+	result.x = a.x + b.x;
+	result.y = a.y + b.y;
+	return (result);
+}

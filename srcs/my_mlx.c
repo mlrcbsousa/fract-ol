@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_point.h                                         :+:      :+:    :+:   */
+/*   my_mlx.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/29 16:29:05 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 12:28:01 by msousa           ###   ########.fr       */
+/*   Created: 2021/11/03 15:12:07 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/03 15:12:33 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_POINT_H
-# define FT_POINT_H
+#include "ft_mlx.h"
 
-struct	s_point
+void my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
-	double	x;
-	double	y;
-};
+	char *dst;
 
-typedef struct s_point	t_point;
-
-t_point point_add(t_point a, t_point b);
-
-#endif
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}

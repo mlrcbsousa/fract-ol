@@ -6,11 +6,11 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 08:24:56 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 18:01:52 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/03 14:49:05 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "ft_color.h"
 #include <stdio.h>
 
 // add_shade is a function that accepts a double(distance) and a int(color) as

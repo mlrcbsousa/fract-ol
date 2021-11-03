@@ -6,7 +6,7 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/02 15:37:20 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/03 15:17:54 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ RM			= rm -f
 INC			= -Iincludes -Ilibft
 UNAME 	:= ${shell uname}
 OBJ			= ${SRC:.c=.o}
-SRC			= main.c srcs/fractol.c srcs/color.c srcs/color_shade.c
+SRC			= main.c srcs/my_mlx.c srcs/color.c srcs/color_shade.c \
+					srcs/complex.c srcs/point.c srcs/range.c
 
 NAME		= fractol
 
