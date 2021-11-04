@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/04 09:15:10 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/04 15:14:06 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void draw(t_image *img)
 		while (j < HEIGHT)
 		{
 			iterations = mandelbrot(i, j);
-			ratio = (double)iterations / (double)MAX_ITERATIONS;
+			ratio = sqrt((double)iterations / (double)MAX_ITERATIONS);
 
 			// rgb = sqrt((double)iterations / (double)MAX_ITERATIONS) * 255.0;
 			// rgb = (double)iterations / (double)MAX_ITERATIONS * 255.0;
