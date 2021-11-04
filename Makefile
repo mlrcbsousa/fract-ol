@@ -10,15 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -g -Wall -Wextra -Werror
 LINKS		= -lmlx -lm -Llibft -lft
 CC			= gcc
 RM			= rm -f
 INC			= -Iincludes -Ilibft
 UNAME 	:= ${shell uname}
 OBJ			= ${SRC:.c=.o}
-SRC			= main.c srcs/my_mlx.c srcs/color.c srcs/color_shade.c \
-					srcs/complex.c srcs/point.c srcs/range.c
+SRC			= main.c srcs/my_mlx.c srcs/complex.c srcs/point.c srcs/range.c
+					
 
 NAME		= fractol
 

@@ -17,7 +17,6 @@
 # include <math.h>
 # include <stdlib.h>
 # include "libft.h"
-# include "ft_color.h"
 # include "ft_point.h"
 # include "ft_range.h"
 # include "ft_mlx.h"
@@ -26,7 +25,7 @@
 # define HEIGHT 1000
 # define MAX_ITERATIONS 100
 
-void	  fractol(void);
+int	create_trgb(int t, int r, int g, int b);
 t_point complex_squared(t_point complex);
 
 #endif

@@ -77,7 +77,7 @@ int mandelbrot(int i, int j)
 
 	while (iterations < MAX_ITERATIONS)
 	{
-		if (pow(z.x, 4.0) + pow(z.y, 4.0) > 16.0)
+		if (pow(z.x, 2.0) + pow(z.y, 2.0) > 4.0)
 			break;
 		z = point_add(complex_squared(z), c);
 		iterations++;
@@ -110,9 +110,9 @@ void draw(t_image *img)
 
 			// rgb = sqrt((double)iterations / (double)MAX_ITERATIONS) * 255.0;
 			// rgb = (double)iterations / (double)MAX_ITERATIONS * 255.0;
-			red = (9 * (1 - ratio) * pow(ratio, 3) * 255);
-			green = (15 * pow((1 - ratio), 2) * pow(ratio, 2) * 255);
-			blue = (8.5 * pow((1 - ratio), 3) * ratio * 255);
+			red = (15 * pow((1 - ratio), 2) * pow(ratio, 2) * 255);
+			green = (9 * pow((1 - ratio), 1) * pow(ratio, 3) * 255);
+			blue = (8.5 * pow((1 - ratio), 3) * pow(ratio, 1) * 255);
 
 			if (iterations == MAX_ITERATIONS)
 			{
@@ -121,19 +121,47 @@ void draw(t_image *img)
 				blue = 0;
 			}
 			color = create_trgb(0, red, green, blue);
-			my_mlx_pixel_put(img, i, HEIGHT - j, color);
+			my_mlx_pixel_put(img, i, HEIGHT - j - 1, color);
 			j++;
 		}
 		i++;
 	}
 }
 
-int	main(void)
+int create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+void	usage(void)
+{
+	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("Usage: ./fractol <name> <a> <b>", 1);
+	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("   - name   Name of fractal to display", 1);
+	ft_putendl_fd("            options: Mandelbrot", 1);
+	ft_putendl_fd("                     Julia", 1);
+	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("   - a      Only if fractal choice is Julia", 1);
+	ft_putendl_fd("            real component of constant C", 1);
+	ft_putchar_fd('\n', 1);
+	ft_putendl_fd("   - b      Only if fractal choice is Julia", 1);
+	ft_putendl_fd("            imaginary component of constant C", 1);
+	ft_putchar_fd('\n', 1);
+}
+
+int	main(int argc, char *argv[])
 {
 	void *mlx;
 	void *mlx_win;
 	t_image img;
 
+	(void)argv;
+	if (argc < 2)
+	{
+		usage();
+		exit(0);
+	}
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Mandelbrot");
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
@@ -142,6 +170,5 @@ int	main(void)
 	draw(&img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
-
 	return (0);
 }
