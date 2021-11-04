@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
+#    By: msousa <msousa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/03 15:17:54 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/04 20:57:08 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ RM			= rm -f
 INC			= -Iincludes -Ilibft
 UNAME 	:= ${shell uname}
 OBJ			= ${SRC:.c=.o}
-SRC			= main.c srcs/my_mlx.c srcs/complex.c srcs/point.c srcs/range.c
+SRC			= fractol.c srcs/my_mlx.c srcs/complex.c srcs/point.c srcs/range.c \
+					srcs/utils.c srcs/formulas.c
 					
 
 NAME		= fractol
@@ -47,13 +48,8 @@ bonus:
 test:			${NAME}
 					-norminette $$( find . -type f \( -name "*.c" -or -name "*.h" \) )
 					@echo
-ifeq (${UNAME}, Linux)
 					valgrind --tool=memcheck --leak-check=yes --show-reachable=yes \
 					--num-callers=20 --track-fds=yes ./${NAME}
-endif
-ifeq (${UNAME}, Darwin)
-					leaks -atExit -- ./${NAME}
-endif
 
 clean:
 					${MAKE} clean -C libft
