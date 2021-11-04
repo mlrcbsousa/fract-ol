@@ -6,7 +6,7 @@
 /*   By: msousa <msousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/04 22:52:01 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/04 23:25:40 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@ static t_bool	set_fractal(char *argv, t_app *self)
 
 static t_bool	invalid(int argc, char* argv[], t_app *self)
 {
-	// ft_printf("%d/n", !set_fractal(argv[1], self));
-	return (argc < 2 || (!set_fractal(argv[1], self) && 
-					!(ft_streq(argv[1], "Julia") && argc >= 4 && ft_isfloat(argv[2]) && 
-							ft_isfloat(argv[3]))));
+	if (argc < 2 || !set_fractal(argv[1], self))
+		return (TRUE);
+	if (ft_streq(argv[1], "Julia") &&
+			(argc < 4 || (argv[2] && !ft_isfloat(argv[2])) || 
+				(argv[3] && !ft_isfloat(argv[3]))))
+		return (TRUE);
+	return (FALSE);
 }
+
+#include <stdio.h>
 
 int	main(int argc, char *argv[])
 {
@@ -91,14 +96,16 @@ int	main(int argc, char *argv[])
 	self = (t_app){
 		.axis_x = (t_range){ -2 * RATIO, 2 * RATIO },
 		.axis_y = (t_range){ -2, 2 },
-		// .c = (t_point) { .x = -0.835, .y = -0.2321 }
 	};
 	
-	ft_printf("%d/n", invalid(argc, argv, &self));
+	// ft_printf("!invalid: %d\n", !invalid(argc, argv, &self));
 	if (invalid(argc, argv, &self))
 		usage();
 	else
 	{
+		// printf("ft_atod: %lf %lf\n", ft_atod(argv[2]), ft_atod(argv[3]));
+		ft_atod(argv[2]);
+		ft_atod(argv[3]);
 		if (ft_streq(argv[1], "Julia"))
 			self.c = (t_point){ -0.835, -0.2321 };
 		// 	self.c = (t_point) { ft_atod(argv[2]), ft_atod(argv[3]) };
