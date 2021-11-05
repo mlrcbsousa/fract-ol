@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 11:51:20 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:59:03 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,23 +105,6 @@ void set_image(t_app *self)
 	self->img = img;
 }
 
-int ft_indexofi(int *array, int size, int n)
-{
-	int	i;
-
-	i = 0;
-	while (size > i)
-		if (*(array + sizeof(int)) == n)
-			return (i);
-		i++;
-	return (-1);
-}
-
-t_bool ft_includesi(int *array, int size, int n)
-{
-	return (ft_indexofi(array, size, n) != -1);
-}
-
 void move(int key, t_app *self)
 {
 	double	size;
@@ -161,20 +144,12 @@ int close_app(t_app *self)
 
 int key_hook(int key, t_app *self)
 {
-	int arrow_keys[4];
-
-	arrow_keys[0] = ARROW_UP;
-	arrow_keys[1] = ARROW_DOWN;
-	arrow_keys[2] = ARROW_LEFT;
-	arrow_keys[3] = ARROW_RIGHT;
 	printf("key_hook: %d\n", key);
 
-	printf("%d\n", ft_indexofi(arrow_keys, 4, key));
-	if (key == 259)
-		return (0);
 	if (key == KEY_ESC)
 		close_app(self);
-	else if (ft_includesi(arrow_keys, 4, key))
+	else if (key == ARROW_UP || key == ARROW_DOWN || key == ARROW_LEFT ||
+						key == ARROW_RIGHT)
 		move(key, self);
 	else if (key == KEY_C)
 		shift_color(self);
