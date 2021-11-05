@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msousa <msousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 18:59:55 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/04 23:29:46 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 09:15:34 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,25 @@ t_bool	ft_streq(char const *s1, char const *s2)
 	return (s1 && s2 && ft_ternary(ft_strcmp(s1, s2), FALSE, TRUE));
 }
 
-#include <stdio.h>
-
-double	ft_atod(char* str)
+double	ft_atof(char* str)
 {
 	char **strs;
 	double	n;
+	int	sign;
 
+	sign = 1;
+	if (*str == '-')
+		sign = -1;
 	strs = ft_split(str, '.');
-	ft_printf("strs: %d\n", ft_atoi(*strs));
-	n = (double)ft_atoi(*strs);
-	// printf("n: %lf\n", n);
-
-	n += (double)ft_atoi(*(strs + 1)) / ((double)ft_strlen(*(strs + 1)) * 10);
+	n = sign * ((double)ft_atoi(*strs) +
+			(double)ft_atoi(*(strs + 1)) / pow(10, (double)ft_strlen(*(strs + 1))));
 	free(strs);
 	return (n);
 }
 
 t_bool	ft_isfloat(char *str)
 {
-	// ft_putendl_fd(str, 1);
-	if (!str || (*str != '-' && !ft_isdigit(*str)) || 
+	if (!str || (*str != '-' && !ft_isdigit(*str)) ||
 			(*str == '-' && *(str + 1) == '.'))
 		return (FALSE);
 	str++;

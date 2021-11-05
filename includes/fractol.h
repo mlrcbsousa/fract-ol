@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msousa <msousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/04 22:36:21 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 09:00:15 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	usage(void);
 int	create_trgb(int t, int r, int g, int b);
 t_point complex_squared(t_point complex);
 t_bool	ft_streq(char const *s1, char const *s2);
-double	ft_atod(char* str);
+double	ft_atof(char* str);
 t_bool	ft_isfloat(char *str);
 int	ft_strcmp(char const *s1, char const *s2);
 

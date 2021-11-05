@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 08:47:57 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 09:15:18 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,12 @@ int	main(int argc, char *argv[])
 		.axis_y = (t_range){ -2, 2 },
 	};
 
-	// ft_printf("!invalid: %d\n", !invalid(argc, argv, &self));
 	if (invalid(argc, argv, &self))
 		usage();
 	else
 	{
-		// printf("ft_atod: %lf %lf\n", ft_atod(argv[2]), ft_atod(argv[3]));
-		// ft_atod(argv[2]);
-		// ft_atod(argv[3]);
 		if (ft_streq(argv[1], "Julia"))
-			self.c = (t_point){ -0.835, -0.2321 };
-		// 	self.c = (t_point) { ft_atod(argv[2]), ft_atod(argv[3]) };
+			self.c = (t_point) { ft_atof(argv[2]), ft_atof(argv[3]) };
 		mlx = mlx_init();
 		mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, self.fractal.name);
 		img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
