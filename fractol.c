@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 09:15:18 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 10:57:33 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,95 @@ static t_bool	invalid(int argc, char* argv[], t_app *self)
 
 #include <stdio.h>
 
+void set_image(void *mlx, t_app *self)
+{
+	t_image *img;
+
+	img = (t_image *)malloc(sizeof(t_image));
+	if (!img)
+		// terminate(ERR_IMAGE_INIT);
+		// error();
+		ft_putendl_fd("Error", 2);
+
+	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img->addr = mlx_get_data_addr(img->img,
+																&(img->bits_per_pixel),
+																&(img->line_length),
+															 	&(img->endian));
+	self->img = img;
+}
+
+int	ft_indexofi(int *array, int n)
+{
+	int	i;
+
+	i = -1;
+	while (array)
+		if (*array++ == n)
+			break;
+		i++;
+	return (i);
+}
+
+t_bool	ft_includesi(int *array, int n)
+{
+	return (ft_indexofi(array, n) != -1);
+}
+
+void shift_color(t_app *self)
+{
+	(void)self;
+	printf("shift_color: \n");
+}
+
+void move(int key, t_app *self)
+{
+	(void)self;
+	printf("move: %d\n", key);
+}
+
+int key_hook(int key, t_app *self)
+{
+	int arrow_keys[4];
+
+	arrow_keys[0] = ARROW_UP;
+	arrow_keys[1] = ARROW_DOWN;
+	arrow_keys[2] = ARROW_LEFT;
+	arrow_keys[3] = ARROW_RIGHT;
+
+	if (key == KEY_ESC)
+		exit(0);
+	else if (ft_includesi(arrow_keys, key))
+		move(key, self);
+	else if (key == KEY_C)
+		shift_color(self);
+	return (0);
+}
+
+int button_hook(int keycode, t_app *self)
+{
+	(void)self;
+	printf("button: %d\n", keycode);
+	return (0);
+}
+
+// int close(int keycode, t_vars *vars)
+// {
+// 	// mlx_destroy_window(vars->mlx, vars->win);
+// }
+
+void	set_hooks(t_app *self)
+{
+	mlx_key_hook(self->mlx_window, key_hook, self);
+
+	// mlx_hook(self->mlx_window, KEY_PRESS, 0, key_hook, self);
+	// mlx_hook(self->mlx_window, 17, 0, close, self);
+	mlx_hook(self->mlx_window, BUTTON_PRESS, 0, button_hook, self);
+}
+
 int	main(int argc, char *argv[])
 {
 	void *mlx;
-	void *mlx_win;
-	t_image img;
 	t_app	self;
 
 	self = (t_app){
@@ -104,14 +188,15 @@ int	main(int argc, char *argv[])
 	{
 		if (ft_streq(argv[1], "Julia"))
 			self.c = (t_point) { ft_atof(argv[2]), ft_atof(argv[3]) };
+
 		mlx = mlx_init();
-		mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, self.fractal.name);
-		img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
-		img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-																&img.endian);
-		self.img = &img;
-		draw(&self);
-		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+
+		self.mlx_window = mlx_new_window(mlx, WIDTH, HEIGHT, self.fractal.name);
+		set_image(mlx, &self);
+		set_hooks(&self);
+		// draw(&self);
+		// mlx_put_image_to_window(mlx, self.mlx_window, self.img->img, 0, 0);
+
 		mlx_loop(mlx);
 	}
 

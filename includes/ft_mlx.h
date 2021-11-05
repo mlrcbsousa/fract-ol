@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:08:07 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/03 15:56:23 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 10:48:45 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 
 # include <mlx.h>
 
+# define KEY_PRESS 2
+# define BUTTON_PRESS 4
+
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
+
+# define ARROW_UP	126
+# define ARROW_DOWN 125
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+
+# define KEY_ESC 53
+# define KEY_C 8
 struct s_image
 {
   void *img;
