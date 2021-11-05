@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 11:06:14 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 13:05:30 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct	s_app
 // Formulas
 int mandelbrot(int i, int j, t_app *self);
 int julia(int i, int j, t_app *self);
+int burning_ship(int i, int j, t_app *self);
 
 // Utils
 void	usage(void);

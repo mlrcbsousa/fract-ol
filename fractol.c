@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 11:59:03 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 13:07:57 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void draw(t_app *self)
 		{
 			iterations = self->fractal.formula(i, j, self);
 			color = get_color(iterations, self);
-			my_mlx_pixel_put(self->img, i, HEIGHT - j - 1, color);
+			my_mlx_pixel_put(self->img, i, j, color);
 			j++;
 		}
 		i++;
@@ -55,14 +55,15 @@ void draw(t_app *self)
 
 static t_bool	set_fractal(char *argv, t_app *self)
 {
-	static t_fractal	fractals[2] = {
-		{ "Mandelbrot", mandelbrot },
-		{ "Julia", julia },
+	static t_fractal fractals[3] = {
+			{"Mandelbrot", mandelbrot},
+			{"Julia", julia},
+			{"Burning Ship", burning_ship},
 	};
 	int	i;
 
 	i = 0;
-	while (i < 2)
+	while (i < 3)
 	{
 		if (ft_streq(argv, fractals[i].name))
 		{
@@ -144,8 +145,6 @@ int close_app(t_app *self)
 
 int key_hook(int key, t_app *self)
 {
-	printf("key_hook: %d\n", key);
-
 	if (key == KEY_ESC)
 		close_app(self);
 	else if (key == ARROW_UP || key == ARROW_DOWN || key == ARROW_LEFT ||
@@ -156,10 +155,35 @@ int key_hook(int key, t_app *self)
 	return (0);
 }
 
-int button_hook(int keycode, t_app *self)
+static double interpolate(double start, double end, double interpolation)
 {
-	(void)self;
-	printf("button: %d\n", keycode);
+	return (start + ((end - start) * interpolation));
+}
+
+int zoom(int button, int x, int y, t_app *self)
+{
+	t_point mouse;
+	double ratio;
+
+	if (button == SCROLL_UP || button == SCROLL_DOWN)
+	{
+		mouse = (t_point){
+				(double)x / (WIDTH / (self->axis_x.min - self->axis_y.min)) + self->axis_x.min,
+				(double)y / (HEIGHT / (self->axis_x.max - self->axis_y.max)) * -1 + self->axis_x.max};
+		if (button == SCROLL_UP)
+			ratio = 1.0 / 0.80;
+		else
+			ratio = 1.0 / 1.20;
+		// self->axis_x = range_resize(self->axis_x, ratio);
+		// self->axis_y = range_resize(self->axis_y, ratio);
+
+		self->axis_x.min = interpolate(mouse.x, self->axis_x.min, ratio);
+		self->axis_x.max = interpolate(mouse.x, self->axis_x.max, ratio);
+
+		self->axis_y.min = interpolate(mouse.y, self->axis_y.min, ratio);
+		self->axis_y.max = interpolate(mouse.y, self->axis_y.max, ratio);
+		draw(self);
+	}
 	return (0);
 }
 
@@ -167,7 +191,7 @@ void	set_hooks(t_app *self)
 {
 	mlx_hook(self->mlx_window, KEY_PRESS, KEY_PRESS_MASK, key_hook, self);
 	// mlx_key_hook(self->mlx_window, key_hook, self);
-	mlx_hook(self->mlx_window, BUTTON_PRESS, 0, button_hook, self);
+	mlx_hook(self->mlx_window, BUTTON_PRESS, 0, zoom, self);
 	mlx_hook(self->mlx_window, 17, 0, close_app, self);
 }
 
