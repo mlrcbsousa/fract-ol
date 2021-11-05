@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 10:57:33 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:51:20 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void draw(t_app *self)
 		}
 		i++;
 	}
+	mlx_put_image_to_window(self->mlx, self->mlx_window, self->img->img, 0, 0);
 }
 
 static t_bool	set_fractal(char *argv, t_app *self)
@@ -86,17 +87,17 @@ static t_bool	invalid(int argc, char* argv[], t_app *self)
 
 #include <stdio.h>
 
-void set_image(void *mlx, t_app *self)
+void set_image(t_app *self)
 {
 	t_image *img;
 
 	img = (t_image *)malloc(sizeof(t_image));
 	if (!img)
-		// terminate(ERR_IMAGE_INIT);
-		// error();
-		ft_putendl_fd("Error", 2);
-
-	img->img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	{
+		ft_putendl_fd("Failed to allocate image memory!", 2);
+		exit(1);
+	}
+	img->img = mlx_new_image(self->mlx, WIDTH, HEIGHT);
 	img->addr = mlx_get_data_addr(img->img,
 																&(img->bits_per_pixel),
 																&(img->line_length),
@@ -104,33 +105,58 @@ void set_image(void *mlx, t_app *self)
 	self->img = img;
 }
 
-int	ft_indexofi(int *array, int n)
+int ft_indexofi(int *array, int size, int n)
 {
 	int	i;
 
-	i = -1;
-	while (array)
-		if (*array++ == n)
-			break;
+	i = 0;
+	while (size > i)
+		if (*(array + sizeof(int)) == n)
+			return (i);
 		i++;
-	return (i);
+	return (-1);
 }
 
-t_bool	ft_includesi(int *array, int n)
+t_bool ft_includesi(int *array, int size, int n)
 {
-	return (ft_indexofi(array, n) != -1);
-}
-
-void shift_color(t_app *self)
-{
-	(void)self;
-	printf("shift_color: \n");
+	return (ft_indexofi(array, size, n) != -1);
 }
 
 void move(int key, t_app *self)
 {
-	(void)self;
+	double	size;
+
 	printf("move: %d\n", key);
+
+	if (key == ARROW_RIGHT || key == ARROW_LEFT)
+	{
+		size = range_size(self->axis_x);
+		if (key == ARROW_RIGHT)
+			self->axis_x = range_move(self->axis_x, size * 0.05);
+		else
+			self->axis_x = range_move(self->axis_x, size * -0.05);
+	}
+	else if (key == ARROW_UP || key == ARROW_DOWN)
+	{
+		size = range_size(self->axis_y);
+		if (key == ARROW_UP)
+			self->axis_y = range_move(self->axis_y, size * 0.05);
+		else
+			self->axis_y = range_move(self->axis_y, size * -0.05);
+	}
+	draw(self);
+}
+
+static void shift_color(t_app *self)
+{
+	self->shift = (self->shift + 1) % 3;
+	draw(self);
+}
+
+int close_app(t_app *self)
+{
+	mlx_destroy_window(self->mlx, self->mlx_window);
+	exit(0);
 }
 
 int key_hook(int key, t_app *self)
@@ -141,10 +167,14 @@ int key_hook(int key, t_app *self)
 	arrow_keys[1] = ARROW_DOWN;
 	arrow_keys[2] = ARROW_LEFT;
 	arrow_keys[3] = ARROW_RIGHT;
+	printf("key_hook: %d\n", key);
 
+	printf("%d\n", ft_indexofi(arrow_keys, 4, key));
+	if (key == 259)
+		return (0);
 	if (key == KEY_ESC)
-		exit(0);
-	else if (ft_includesi(arrow_keys, key))
+		close_app(self);
+	else if (ft_includesi(arrow_keys, 4, key))
 		move(key, self);
 	else if (key == KEY_C)
 		shift_color(self);
@@ -158,23 +188,16 @@ int button_hook(int keycode, t_app *self)
 	return (0);
 }
 
-// int close(int keycode, t_vars *vars)
-// {
-// 	// mlx_destroy_window(vars->mlx, vars->win);
-// }
-
 void	set_hooks(t_app *self)
 {
-	mlx_key_hook(self->mlx_window, key_hook, self);
-
-	// mlx_hook(self->mlx_window, KEY_PRESS, 0, key_hook, self);
-	// mlx_hook(self->mlx_window, 17, 0, close, self);
+	mlx_hook(self->mlx_window, KEY_PRESS, KEY_PRESS_MASK, key_hook, self);
+	// mlx_key_hook(self->mlx_window, key_hook, self);
 	mlx_hook(self->mlx_window, BUTTON_PRESS, 0, button_hook, self);
+	mlx_hook(self->mlx_window, 17, 0, close_app, self);
 }
 
 int	main(int argc, char *argv[])
 {
-	void *mlx;
 	t_app	self;
 
 	self = (t_app){
@@ -189,15 +212,14 @@ int	main(int argc, char *argv[])
 		if (ft_streq(argv[1], "Julia"))
 			self.c = (t_point) { ft_atof(argv[2]), ft_atof(argv[3]) };
 
-		mlx = mlx_init();
+		self.mlx = mlx_init();
 
-		self.mlx_window = mlx_new_window(mlx, WIDTH, HEIGHT, self.fractal.name);
-		set_image(mlx, &self);
+		self.mlx_window = mlx_new_window(self.mlx, WIDTH, HEIGHT, self.fractal.name);
+		set_image(&self);
 		set_hooks(&self);
-		// draw(&self);
-		// mlx_put_image_to_window(mlx, self.mlx_window, self.img->img, 0, 0);
+		draw(&self);
 
-		mlx_loop(mlx);
+		mlx_loop(self.mlx);
 	}
 
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 09:52:49 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:06:14 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct	s_app
 	t_image	*img;
 	int	shift;
   void *mlx_window;
+  void *mlx;
 };
 
 // Formulas

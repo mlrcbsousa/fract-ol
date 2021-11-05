@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:08:07 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 10:48:45 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:00:54 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <mlx.h>
 
 # define KEY_PRESS 2
+# define KEY_PRESS_MASK (1L<<0)
 # define BUTTON_PRESS 4
 
 # define SCROLL_UP 4
