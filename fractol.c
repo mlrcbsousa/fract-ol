@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msousa <msousa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/04 23:25:40 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/05 08:47:57 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	get_color(int iterations, t_app *self)
 	int	rgb[3];
 
 	ratio = sqrt((double)iterations / (double)MAX_ITERATIONS);
-	rgb[(0 + self->shift) % 3] = 
+	rgb[(0 + self->shift) % 3] =
 		(15 * pow((1 - ratio), 2) * pow(ratio, 2) * 255);
-	rgb[(1 + self->shift) % 3] = 
+	rgb[(1 + self->shift) % 3] =
 		(9 * pow((1 - ratio), 1) * pow(ratio, 3) * 255);
-	rgb[(2 + self->shift) % 3] = 
+	rgb[(2 + self->shift) % 3] =
 		(8.5 * pow((1 - ratio), 3) * pow(ratio, 1) * 255);
 
 	if (iterations == MAX_ITERATIONS)
@@ -78,7 +78,7 @@ static t_bool	invalid(int argc, char* argv[], t_app *self)
 	if (argc < 2 || !set_fractal(argv[1], self))
 		return (TRUE);
 	if (ft_streq(argv[1], "Julia") &&
-			(argc < 4 || (argv[2] && !ft_isfloat(argv[2])) || 
+			(argc < 4 || (argv[2] && !ft_isfloat(argv[2])) ||
 				(argv[3] && !ft_isfloat(argv[3]))))
 		return (TRUE);
 	return (FALSE);
@@ -97,15 +97,15 @@ int	main(int argc, char *argv[])
 		.axis_x = (t_range){ -2 * RATIO, 2 * RATIO },
 		.axis_y = (t_range){ -2, 2 },
 	};
-	
+
 	// ft_printf("!invalid: %d\n", !invalid(argc, argv, &self));
 	if (invalid(argc, argv, &self))
 		usage();
 	else
 	{
 		// printf("ft_atod: %lf %lf\n", ft_atod(argv[2]), ft_atod(argv[3]));
-		ft_atod(argv[2]);
-		ft_atod(argv[3]);
+		// ft_atod(argv[2]);
+		// ft_atod(argv[3]);
 		if (ft_streq(argv[1], "Julia"))
 			self.c = (t_point){ -0.835, -0.2321 };
 		// 	self.c = (t_point) { ft_atod(argv[2]), ft_atod(argv[3]) };
@@ -118,7 +118,7 @@ int	main(int argc, char *argv[])
 		draw(&self);
 		mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 		mlx_loop(mlx);
-	}	
-	
+	}
+
 	return (0);
 }
