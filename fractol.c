@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 13:07:57 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/06 13:27:48 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,10 +199,9 @@ int	main(int argc, char *argv[])
 {
 	t_app	self;
 
-	self = (t_app){
-		.axis_x = (t_range){ -2 * RATIO, 2 * RATIO },
-		.axis_y = (t_range){ -2, 2 },
-	};
+	self.axis_x = (t_range){ -1.85 * RATIO, -1.7 * RATIO };
+	self.axis_y = (t_range){ -0.1, 0.05 };
+	self.shift = 0;
 
 	if (invalid(argc, argv, &self))
 		usage();
