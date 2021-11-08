@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msousa <msousa@student.42.fr>              +#+  +:+       +#+         #
+#    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/04 20:57:08 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/08 13:08:30 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ RM			= rm -f
 INC			= -Iincludes -Ilibft
 UNAME 	:= ${shell uname}
 OBJ			= ${SRC:.c=.o}
-SRC			= fractol.c srcs/my_mlx.c srcs/complex.c srcs/point.c srcs/range.c \
-					srcs/utils.c srcs/formulas.c
-					
+SRC			= fractol.c srcs/point.c srcs/range.c srcs/utils.c srcs/draw.c \
+					srcs/formulas.c srcs/hooks.c
+
 
 NAME		= fractol
 
@@ -31,19 +31,14 @@ ifeq (${UNAME}, Darwin)
 LINKS += -framework OpenGL -framework AppKit
 endif
 
-${NAME}:	libft ${OBJ}
+${NAME}:	${OBJ}
 					${CC} ${CFLAGS} ${OBJ} ${LINKS} -o $@
 
-libft:
-					${MAKE} -C libft
-
 %.o:%.c
+					${MAKE} -C libft
 					${CC} ${CFLAGS} ${INC} -c $< -o $@
 
 all:			${NAME}
-
-bonus:
-					@echo "TBD"
 
 test:			${NAME}
 					-norminette $$( find . -type f \( -name "*.c" -or -name "*.h" \) )

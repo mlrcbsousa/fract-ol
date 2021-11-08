@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/05 13:05:30 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/08 14:39:39 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,20 @@ struct	s_app
   void *mlx;
 };
 
+// Hooks
+void draw(t_app *self);
+void set_hooks(t_app *self);
+
 // Formulas
 int mandelbrot(int i, int j, t_app *self);
 int julia(int i, int j, t_app *self);
 int burning_ship(int i, int j, t_app *self);
 
-// Utils
-void	usage(void);
-int	create_trgb(int t, int r, int g, int b);
+// Point
 t_point complex_squared(t_point complex);
-t_bool	ft_streq(char const *s1, char const *s2);
+
+// libft
 double	ft_atof(char* str);
 t_bool	ft_isfloat(char *str);
-int	ft_strcmp(char const *s1, char const *s2);
 
 #endif
