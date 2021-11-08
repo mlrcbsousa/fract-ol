@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:15:21 by manuel            #+#    #+#             */
-/*   Updated: 2021/11/01 15:12:29 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/08 20:56:13 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <limits.h>
 # include "ft_printf.h"
+# include "ft_boolean.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -47,14 +48,13 @@
 # define BINARY "01"
 # define OCTAL "01234567"
 
-    typedef struct s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
 
 // Part 1
-
 void	*ft_memset(void *str, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -85,7 +85,6 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s1);
 
 // Part 2
-
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -99,7 +98,6 @@ void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int nb, int fd);
 
 // Bonus
-
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -111,7 +109,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // Added
-
 char	*ft_strcpy(char *dst, const char *src);
 int		ft_strnchr(const char *str, int c);
 int		ft_isspace(char c);
@@ -125,5 +122,11 @@ void	ft_putnbr_base(long long nb, char *radix);
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
 char	*ft_ultoa_base(unsigned long n, char *radix);
+int		ft_strcmp(const char *s1, const char *s2);
+t_bool	ft_streq(char const *s1, char const *s2);
+long	ft_pow(int nb, int power);
+double	ft_fabs(double n);
+double	ft_atof(char *str);
+t_bool  ft_isfloat(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:45:50 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/02 15:49:28 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/08 14:10:14 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	ft_printf(const char *string, ...)
 	va_start(ap, string);
 	while (*string)
 	{
-		if (*string == PRINTF_DELIMITER &&
-				ft_strnchr(PRINTF_FORMATS, *(string + 1)) != -1)
+		if (*string == PRINTF_DELIMITER
+			&& ft_strnchr(PRINTF_FORMATS, *(string + 1)) != -1)
 			length += formatters[ft_strnchr(PRINTF_FORMATS, *(++string))](ap);
 		else
 		{

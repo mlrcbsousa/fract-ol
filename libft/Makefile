@@ -6,7 +6,7 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/12 22:41:56 by msousa            #+#    #+#              #
-#    Updated: 2021/11/01 15:20:54 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/08 20:58:52 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS		= ft_atoi.c ft_isalpha.c ft_isprint.c ft_memchr.c ft_memmove.c \
 					ft_isspace.c get_next_line.c ft_uitoa.c ft_abs.c ft_ternary.c \
 					ft_ullen.c ft_putnbr_base.c ft_putchar.c ft_putstr.c \
 					ft_ullen_base.c ft_ultoa_base.c ft_strnchr.c ft_printf_formatters.c \
-					ft_printf.c
+					ft_printf.c ft_strcmp.c ft_streq.c ft_pow.c ft_fabs.c ft_atof.c \
+					ft_isfloat.c
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -37,7 +38,7 @@ ${NAME}:	${OBJS}
 					${AR} $@ $^
 					ranlib $@
 
-%.o:%.c		libft.h ft_printf.h
+%.o:%.c		libft.h ft_printf.h ft_boolean.h
 					${CC} ${CFLAGS} -c $< -o $@
 
 all:			${NAME}

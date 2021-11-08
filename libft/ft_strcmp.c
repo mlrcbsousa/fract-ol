@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ternary.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/23 00:29:17 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 15:54:32 by msousa           ###   ########.fr       */
+/*   Created: 2021/11/08 13:48:56 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/08 14:15:18 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_ternary(int condition, int a, int b)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (condition)
-		return (a);
-	return (b);
+	while (*s1 || *s2)
+	{
+		if (*s1 != *s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		s1++;
+		s2++;
+	}
+	return (0);
 }
