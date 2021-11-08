@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 14:39:39 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/08 21:04:41 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,5 @@ int burning_ship(int i, int j, t_app *self);
 
 // Point
 t_point complex_squared(t_point complex);
-
-// libft
-double	ft_atof(char* str);
-t_bool	ft_isfloat(char *str);
 
 #endif
