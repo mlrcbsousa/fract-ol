@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 12:00:59 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/08 22:12:58 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static int zoom(int button, int x, int y, t_app *self)
 	t_point mouse;
 	double ratio;
 
+	// printf("move: %d\n", button);
+
 	if (button == SCROLL_UP || button == SCROLL_DOWN)
 	{
 		mouse = (t_point){
@@ -94,6 +96,6 @@ static int zoom(int button, int x, int y, t_app *self)
 void set_hooks(t_app *self)
 {
 	mlx_key_hook(self->mlx_window, key_hook, self);
-	mlx_hook(self->mlx_window, BUTTON_PRESS, 0, zoom, self);
+	mlx_hook(self->mlx_window, BUTTON_PRESS, BUTTON_PRESS_MASK, zoom, self);
 	mlx_hook(self->mlx_window, DESTROY_NOTIFY, 0, close_app, self);
 }

@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_mlx.h                                           :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 15:08:07 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 22:02:46 by msousa           ###   ########.fr       */
+/*   Created: 2021/11/08 21:55:32 by msousa            #+#    #+#             */
+/*   Updated: 2021/11/08 21:55:57 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef KEYS_H
+# define KEYS_H
 
-#ifndef FT_MLX_H
-# define FT_MLX_H
+# define ARROW_UP	126
+# define ARROW_DOWN 125
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
 
-# include <mlx.h>
-# include "keys.h"
-
-# define BUTTON_PRESS 4
-# define BUTTON_PRESS_MASK (1L<<2)
-# define DESTROY_NOTIFY 17
-
-# define SCROLL_UP 4
-# define SCROLL_DOWN 5
-
-struct s_image
-{
-  void *img;
-  char *addr;
-  int bits_per_pixel;
-  int line_length;
-  int endian;
-};
-
-typedef struct s_image t_image;
+# define KEY_ESC 53
+# define KEY_C 8
 
 #endif

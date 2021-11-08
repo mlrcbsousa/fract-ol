@@ -6,7 +6,7 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/08 21:06:56 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/08 22:04:43 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,13 @@ SRC			= fractol.c srcs/point.c srcs/range.c srcs/draw.c srcs/hooks.c\
 NAME		= fractol
 
 ifeq (${UNAME}, Linux)
-LINKS += -lbsd -lXext -lX11
+LINKS 	+= -lbsd -lXext -lX11
+INC 		+= -Ilinux
 endif
 
 ifeq (${UNAME}, Darwin)
-LINKS += -framework OpenGL -framework AppKit
+LINKS 	+= -framework OpenGL -framework AppKit
+INC 		+= -Imac
 endif
 
 ${NAME}:	${OBJ}
