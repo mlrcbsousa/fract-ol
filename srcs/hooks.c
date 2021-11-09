@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 22:16:01 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 22:29:56 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ static int	zoom(int button, int x, int y, t_app *self)
 void	set_hooks(t_app *self)
 {
 	mlx_key_hook(self->mlx_window, key_hook, self);
-	mlx_hook(self->mlx_window, BUTTON_PRESS, BUTTON_PRESS_MASK, zoom, self);
+	mlx_hook(self->mlx_window, BUTTON_PRESS, 1L<<2, zoom, self);
 	mlx_hook(self->mlx_window, DESTROY_NOTIFY, 0, close_app, self);
 }
