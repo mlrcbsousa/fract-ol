@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:06:29 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 14:42:55 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 21:50:20 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ static int get_color(int iterations, t_app *self)
 	double ratio;
 	int rgb[3];
 
+	if (iterations == MAX_ITERATIONS)
+		return (create_trgb(0, 0, 0, 0));
 	ratio = sqrt((double)iterations / (double)MAX_ITERATIONS);
 	rgb[(0 + self->shift) % 3] = generate_rgb(ratio, 2, 15);
 	rgb[(1 + self->shift) % 3] = generate_rgb(ratio, 1, 9);
 	rgb[(2 + self->shift) % 3] = generate_rgb(ratio, 3, 8.5);
-
-	if (iterations == MAX_ITERATIONS)
-		return (create_trgb(0, 0, 0, 0));
 	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
 }
 
