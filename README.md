@@ -84,3 +84,8 @@ gcc -Wall -Wextra -Werror main.c -lbsd -lmlx -lXext -lX11
 ```
 
 [Rule of Thumb: On a linking command line, libraries go after object files, not before them.](https://stackoverflow.com/questions/59287273/how-do-i-compile-using-minilibx)
+
+
+## Zooming at the Mouse Coordinates with Affine Transformations
+
+[Medium Article](https://medium.com/@benjamin.botto/zooming-at-the-mouse-coordinates-with-affine-transformations-86e7312fd50b)

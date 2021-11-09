@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 19:21:52 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 21:25:15 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static int close_app(t_app *self)
 
 static void move(int key, t_app *self)
 {
-	double size;
-
 	if (key == ARROW_RIGHT || key == ARROW_LEFT)
 		self->axis_x = range_move(self->axis_x,
 															range_size(self->axis_x) * 0.05 
@@ -32,8 +30,6 @@ static void move(int key, t_app *self)
 															* ft_ternary(key == ARROW_DOWN, 1, -1));
 	draw(self);
 }
-
-#include <stdio.h>
 
 static int key_hook(int key, t_app *self)
 {
@@ -50,36 +46,26 @@ static int key_hook(int key, t_app *self)
 	return (0);
 }
 
-// change
-static double interpolate(double start, double end, double interpolation)
-{
-	return (start + ((end - start) * interpolation));
-}
-
 static int zoom(int button, int x, int y, t_app *self)
 {
-	t_point mouse;
-	double ratio;
-
-	// printf("move: %d\n", button);
+	double	ratio;
+	double	x_mapped;
+	double	y_mapped;
 
 	if (button == SCROLL_UP || button == SCROLL_DOWN)
 	{
-		mouse = (t_point){
-				(double)x / (WIDTH / (self->axis_x.min - self->axis_y.min)) + self->axis_x.min,
-				(double)y / (HEIGHT / (self->axis_x.max - self->axis_y.max)) * -1 + self->axis_x.max};
 		if (button == SCROLL_UP)
-			ratio = 1.0 / 0.80;
+			ratio = 1.0 / 1.5;
 		else
-			ratio = 1.0 / 1.20;
-		// self->axis_x = range_resize(self->axis_x, ratio);
-		// self->axis_y = range_resize(self->axis_y, ratio);
-
-		self->axis_x.min = interpolate(mouse.x, self->axis_x.min, ratio);
-		self->axis_x.max = interpolate(mouse.x, self->axis_x.max, ratio);
-
-		self->axis_y.min = interpolate(mouse.y, self->axis_y.min, ratio);
-		self->axis_y.max = interpolate(mouse.y, self->axis_y.max, ratio);
+			ratio = 1.0 / 0.5;
+		x_mapped = range_map(x, WINDOW_X, self->axis_x);
+		y_mapped = range_map(y, WINDOW_Y, self->axis_y);
+		self->axis_x = range_move(self->axis_x, -x_mapped);
+		self->axis_y = range_move(self->axis_y, -y_mapped);
+		self->axis_x = range_resize(self->axis_x, ratio);
+		self->axis_y = range_resize(self->axis_y, ratio);
+		self->axis_x = range_move(self->axis_x, x_mapped);
+		self->axis_y = range_move(self->axis_y, y_mapped);
 		draw(self);
 	}
 	return (0);
