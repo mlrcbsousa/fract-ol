@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:15:21 by manuel            #+#    #+#             */
-/*   Updated: 2021/11/08 20:56:13 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 19:39:27 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,6 @@ t_bool	ft_streq(char const *s1, char const *s2);
 long	ft_pow(int nb, int power);
 double	ft_fabs(double n);
 double	ft_atof(char *str);
-t_bool  ft_isfloat(char *str);
+t_bool	ft_isfloat(char *str);
 
 #endif

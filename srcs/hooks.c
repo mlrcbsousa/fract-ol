@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 22:12:58 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 19:21:52 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,22 @@ static int close_app(t_app *self)
 	exit(0);
 }
 
-#include <stdio.h>
-
 static void move(int key, t_app *self)
 {
 	double size;
 
-	// printf("move: %d\n", key);
-
 	if (key == ARROW_RIGHT || key == ARROW_LEFT)
-	{
-		size = range_size(self->axis_x);
 		self->axis_x = range_move(self->axis_x,
-															size * 0.05 * ft_ternary(key == ARROW_RIGHT,
-																											 1, -1));
-	}
+															range_size(self->axis_x) * 0.05 
+															* ft_ternary(key == ARROW_RIGHT, 1, -1));
 	else if (key == ARROW_UP || key == ARROW_DOWN)
-	{
-		size = range_size(self->axis_y);
 		self->axis_y = range_move(self->axis_y,
-															size * 0.05 * ft_ternary(key == ARROW_DOWN,
-																											 1, -1));
-	}
+															range_size(self->axis_y) * 0.05 
+															* ft_ternary(key == ARROW_DOWN, 1, -1));
 	draw(self);
 }
+
+#include <stdio.h>
 
 static int key_hook(int key, t_app *self)
 {

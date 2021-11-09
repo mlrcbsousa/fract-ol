@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 14:39:29 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 19:30:40 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int	main(int argc, char *argv[])
 		usage();
 	else
 	{
-		self.axis_x = (t_range){-1.8 * RATIO, -1.65 * RATIO};
-		self.axis_y = (t_range){-0.1, 0.05};
+		self.axis_x = (t_range){-2.0 * RATIO, 2.0 * RATIO};
+		self.axis_y = (t_range){-2.0, 2.0};
 		self.shift = 0;
 		if (ft_streq(argv[1], "Julia"))
 			self.c = (t_point) { ft_atof(argv[2]), ft_atof(argv[3]) };
