@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 22:29:56 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 22:42:00 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int	zoom(int button, int x, int y, t_app *self)
 			ratio = 1.0 / 1.5;
 		else
 			ratio = 1.0 / 0.5;
-		x_mapped = range_map(x, WINDOW_X, self->axis_x);
-		y_mapped = range_map(y, WINDOW_Y, self->axis_y);
+		x_mapped = range_map(x, self->window_x, self->axis_x);
+		y_mapped = range_map(y, self->window_y, self->axis_y);
 		self->axis_x = range_move(self->axis_x, -x_mapped);
 		self->axis_y = range_move(self->axis_y, -y_mapped);
 		self->axis_x = range_resize(self->axis_x, ratio);
@@ -74,6 +74,6 @@ static int	zoom(int button, int x, int y, t_app *self)
 void	set_hooks(t_app *self)
 {
 	mlx_key_hook(self->mlx_window, key_hook, self);
-	mlx_hook(self->mlx_window, BUTTON_PRESS, 1L<<2, zoom, self);
+	mlx_hook(self->mlx_window, BUTTON_PRESS, (1L << 2), zoom, self);
 	mlx_hook(self->mlx_window, DESTROY_NOTIFY, 0, close_app, self);
 }

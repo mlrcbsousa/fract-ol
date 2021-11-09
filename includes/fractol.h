@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:16:34 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 21:04:41 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 22:39:57 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,44 +24,43 @@
 
 # define WIDTH 1000
 # define HEIGHT 1000
-# define RATIO ((double)WIDTH / (double)HEIGHT)
+# define RATIO 1.0 // ((double)WIDTH / (double)HEIGHT)
 # define MAX_ITERATIONS 100
 
-# define WINDOW_X ((t_range){ 0.0, WIDTH })
-# define WINDOW_Y ((t_range){ 0.0, HEIGHT })
-
-typedef struct s_app	t_app;
-typedef int	(*t_formula)(int, int, t_app*);
+typedef struct s_app		t_app;
+typedef int					(*t_formula)(int, int, t_app*);
 typedef struct s_fractal	t_fractal;
 
 struct	s_fractal
 {
-	char	*name;
-	t_formula formula;
+	char		*name;
+	t_formula	formula;
 };
 
 struct	s_app
 {
-	t_range	axis_x;
-	t_range	axis_y;
+	t_range		axis_x;
+	t_range		axis_y;
+	t_range		window_x;
+	t_range		window_y;
 	t_fractal	fractal;
-	t_point	c;
-	t_image	*img;
-	int	shift;
-  void *mlx_window;
-  void *mlx;
+	t_point		c;
+	t_image		*img;
+	int			shift;
+	void		*mlx_window;
+	void		*mlx;
 };
 
 // Hooks
-void draw(t_app *self);
-void set_hooks(t_app *self);
+void	draw(t_app *self);
+void	set_hooks(t_app *self);
 
 // Formulas
-int mandelbrot(int i, int j, t_app *self);
-int julia(int i, int j, t_app *self);
-int burning_ship(int i, int j, t_app *self);
+int		mandelbrot(int i, int j, t_app *self);
+int		julia(int i, int j, t_app *self);
+int		burning_ship(int i, int j, t_app *self);
 
 // Point
-t_point complex_squared(t_point complex);
+t_point	complex_squared(t_point complex);
 
 #endif
