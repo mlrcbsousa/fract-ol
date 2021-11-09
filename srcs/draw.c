@@ -6,34 +6,34 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:06:29 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 21:50:20 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/09 22:12:48 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void my_mlx_pixel_put(t_image *data, int x, int y, int color)
+static void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-static int create_trgb(int t, int r, int g, int b)
+static int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-static int generate_rgb(double ratio, int power, double n)
+static int	generate_rgb(double ratio, int power, double n)
 {
 	return (n * pow((1 - ratio), power) * pow(ratio, (4 - power)) * 255);
 }
 
-static int get_color(int iterations, t_app *self)
+static int	get_color(int iterations, t_app *self)
 {
-	double ratio;
-	int rgb[3];
+	double	ratio;
+	int		rgb[3];
 
 	if (iterations == MAX_ITERATIONS)
 		return (create_trgb(0, 0, 0, 0));
@@ -44,12 +44,12 @@ static int get_color(int iterations, t_app *self)
 	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
 }
 
-void draw(t_app *self)
+void	draw(t_app *self)
 {
-	int i;
-	int j;
-	int iterations;
-	int color;
+	int	i;
+	int	j;
+	int	iterations;
+	int	color;
 
 	i = 0;
 	while (i < WIDTH)
