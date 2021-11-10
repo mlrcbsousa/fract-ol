@@ -6,7 +6,7 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/08 22:04:43 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/10 16:38:42 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,17 +33,18 @@ INC 		+= -Imac
 endif
 
 ${NAME}:	${OBJ}
+					${MAKE} -C libft
 					${CC} ${CFLAGS} ${OBJ} ${LINKS} -o $@
 
 %.o:%.c
-					${MAKE} -C libft
 					${CC} ${CFLAGS} ${INC} -c $< -o $@
 
 all:			${NAME}
 
-test:			${NAME}
+style:		${NAME}
 					-norminette $$( find . -type f \( -name "*.c" -or -name "*.h" \) )
-					@echo
+
+test:
 					valgrind --tool=memcheck --leak-check=yes --show-reachable=yes \
 					--num-callers=20 --track-fds=yes ./${NAME}
 
@@ -56,4 +57,4 @@ fclean:		clean
 
 re: 			fclean all
 
-.PHONY : 	all clean fclean re bonus libft
+.PHONY : 	all clean fclean re bonus
