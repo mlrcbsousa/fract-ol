@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:48:13 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/08 16:33:11 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/11 17:51:56 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ double	ft_atof(char *str)
 	afterdot = FALSE;
 	scale = 1.0;
 	sign = 1;
+	n = 0.0;
 	if (*str == '-')
 	{
 		sign = -1;
