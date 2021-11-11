@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:56:50 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 22:40:53 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/11 18:10:09 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	julia(int i, int j, t_app *self)
 	iterations = 0;
 	z = (t_point){
 		.x = range_map(i, self->window_x, self->axis_x),
-		.y = range_map(j, self->window_y, self->axis_y)};
+		.y = range_map(HEIGHT - j, self->window_y, self->axis_y)};
 	while (iterations < MAX_ITERATIONS)
 	{
 		if (pow(z.x, 2.0) + pow(z.y, 2.0) > 4.0)
