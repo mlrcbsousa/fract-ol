@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 22:42:00 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/11 17:48:59 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	close_app(t_app *self)
 {
 	mlx_destroy_window(self->mlx, self->mlx_window);
+	free(self->img);
 	exit(0);
 }
 
