@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:56:50 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/11 18:10:09 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/14 14:25:04 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,22 @@ int	burning_ship(int i, int j, t_app *self)
 		iterations++;
 	}
 	return (iterations);
+}
+
+t_point	point_add(t_point a, t_point b)
+{
+	t_point	result;
+
+	result.x = a.x + b.x;
+	result.y = a.y + b.y;
+	return (result);
+}
+
+t_point	complex_squared(t_point point)
+{
+	t_point	result;
+
+	result.x = pow(point.x, 2.0) - pow(point.y, 2.0);
+	result.y = 2.0 * point.x * point.y;
+	return (result);
 }

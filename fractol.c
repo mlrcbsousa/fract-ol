@@ -6,7 +6,7 @@
 /*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/09 22:39:48 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/14 14:22:49 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	usage(void)
 	ft_putendl_fd("            imaginary component of constant C", 1);
 	ft_putendl_fd("            double in the form (-)0.0", 1);
 	ft_putendl_fd(NULL, 1);
-	exit(0);
+	exit(1);
 }
 
 int	main(int argc, char *argv[])
@@ -90,24 +90,18 @@ int	main(int argc, char *argv[])
 
 	if (invalid(argc, argv, &self))
 		usage();
-	else
-	{
-		self.axis_x = (t_range){-2.0 * RATIO, 2.0 * RATIO};
-		self.axis_y = (t_range){-2.0, 2.0};
-		self.window_x = (t_range){0.0, WIDTH};
-		self.window_y = (t_range){0.0, HEIGHT};
-		self.shift = 0;
-		if (ft_streq(argv[1], "Julia"))
-			self.c = (t_point){ft_atof(argv[2]), ft_atof(argv[3])};
-		self.mlx = mlx_init();
-		self.mlx_window = mlx_new_window(self.mlx,
-				WIDTH,
-				HEIGHT,
-				self.fractal.name);
-		set_image(&self);
-		set_hooks(&self);
-		draw(&self);
-		mlx_loop(self.mlx);
-	}
+	self.axis_x = (t_range){-2.0 * RATIO, 2.0 * RATIO};
+	self.axis_y = (t_range){-2.0, 2.0};
+	self.window_x = (t_range){0.0, WIDTH};
+	self.window_y = (t_range){0.0, HEIGHT};
+	self.shift = 0;
+	if (ft_streq(argv[1], "Julia"))
+		self.c = (t_point){ft_atof(argv[2]), ft_atof(argv[3])};
+	self.mlx = mlx_init();
+	self.mlx_window = mlx_new_window(self.mlx, WIDTH, HEIGHT, argv[1]);
+	set_image(&self);
+	set_hooks(&self);
+	draw(&self);
+	mlx_loop(self.mlx);
 	return (0);
 }

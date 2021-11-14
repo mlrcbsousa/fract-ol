@@ -6,7 +6,7 @@
 #    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/11 18:36:09 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/14 14:25:32 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ RM			= rm -f
 INC			= -Iincludes -Ilibft
 UNAME 	:= ${shell uname}
 OBJ			= ${SRC:.c=.o}
-SRC			= fractol.c srcs/point.c srcs/range.c srcs/draw.c srcs/hooks.c\
-					srcs/formulas.c
+SRC			= fractol.c srcs/range.c srcs/draw.c srcs/hooks.c srcs/formulas.c
 
 NAME		= fractol
 
