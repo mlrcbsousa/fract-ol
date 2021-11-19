@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+         #
+#    By: msousa <msousa@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 15:00:20 by msousa            #+#    #+#              #
-#    Updated: 2021/11/14 14:25:32 by msousa           ###   ########.fr        #
+#    Updated: 2021/11/19 10:48:00 by msousa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ ${NAME}:	${OBJ}
 
 all:			${NAME}
 
-style:		${NAME}
+style:
 					-norminette $$( find . -type f \( -name "*.c" -or -name "*.h" \) )
 
 test:

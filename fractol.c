@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
+/*   By: msousa <msousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 15:00:32 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/14 14:22:49 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/19 10:49:08 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static t_bool	set_fractal(char *argv, t_app *self)
 {
 	static t_fractal	fractals[3] = {
-			{"Mandelbrot", mandelbrot},
-			{"Julia", julia},
-			{"Burning Ship", burning_ship},
+	{"Mandelbrot", mandelbrot},
+	{"Julia", julia},
+	{"Burning Ship", burning_ship},
 	};
 	int					i;
 
