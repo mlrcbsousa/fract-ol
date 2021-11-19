@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msousa <mlrcbsousa@gmail.com>              +#+  +:+       +#+        */
+/*   By: msousa <msousa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/07 16:01:20 by msousa            #+#    #+#             */
-/*   Updated: 2021/11/11 17:48:59 by msousa           ###   ########.fr       */
+/*   Updated: 2021/11/19 11:11:09 by msousa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ static int	zoom(int button, int x, int y, t_app *self)
 	if (button == SCROLL_UP || button == SCROLL_DOWN)
 	{
 		if (button == SCROLL_UP)
-			ratio = 1.0 / 1.5;
+			ratio = 1.0 / 1.2;
 		else
-			ratio = 1.0 / 0.5;
+			ratio = 1.0 / 0.8;
 		x_mapped = range_map(x, self->window_x, self->axis_x);
 		y_mapped = range_map(y, self->window_y, self->axis_y);
+		if (ft_streq(self->fractal.name, "Julia"))
+			y_mapped = range_map(HEIGHT - y, self->window_y, self->axis_y);
 		self->axis_x = range_move(self->axis_x, -x_mapped);
 		self->axis_y = range_move(self->axis_y, -y_mapped);
 		self->axis_x = range_resize(self->axis_x, ratio);
